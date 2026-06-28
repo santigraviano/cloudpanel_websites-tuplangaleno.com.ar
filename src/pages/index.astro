@@ -1,0 +1,506 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const slides = [
+  {
+    img: '/images/hero-1.jpg',
+    title: 'La salud de estar juntos',
+    cta: 'Ver planes',
+    href: '#planes',
+  },
+  {
+    img: '/images/hero-2.jpg',
+    title: 'Elegí el Plan Médico para vos',
+    cta: 'Cotizalo ahora',
+    href: '#contacto',
+  },
+  {
+    img: '/images/hero-3.jpg',
+    title: 'Cuida de la salud de tu familia',
+    cta: 'Afiliate ahora',
+    href: '#contacto',
+  },
+];
+
+const plans = [
+  {
+    name: 'Azul',
+    price: '200/220',
+    subtitle: 'Una amplia cobertura',
+    accent: 'azul',
+    benefits: [
+      'Emergencias las 24hs y sin cargo.',
+      'Consultas Médicas sin cargo e ilimitadas.',
+      'Kinesiología 45 sesiones sin cargo.',
+      'Oftalmología cobertura en cirugía refractiva.',
+      'Odontología cobertura 100%.',
+      'Asistencia en Viaje regionales e internacionales.',
+      'Y más.',
+    ],
+    href: 'https://tuplangaleno.com.ar/200-220/',
+  },
+  {
+    name: 'Plata',
+    price: '300/330',
+    subtitle: 'Cartilla de Primer Nivel',
+    accent: 'plata',
+    benefits: [
+      'Emergencias las 24hs y sin cargo.',
+      'Consultas Médicas sin cargo e ilimitadas.',
+      'Psicología 30 sesiones por año.',
+      'Ortodoncia cobertura 100% (8 a 25 años).',
+      'Kinesiología 45 sesiones sin cargo.',
+      'Asistencia en Viaje regionales e internacionales.',
+      'Y más.',
+    ],
+    href: 'https://tuplangaleno.com.ar/300-330/',
+  },
+  {
+    name: 'Oro',
+    price: '400/440',
+    subtitle: 'Para clientes exigentes',
+    accent: 'oro',
+    benefits: [
+      'Internación acompañante adulto sin cargo.',
+      'Consultas Médicas en domicilio sin cargo.',
+      'Cirugía Estética Cobertura 100%, una c/ 3 años.',
+      'Implantes reintegro en implantes odont.',
+      'Psicología 36 sesiones por año.',
+      'Asistencia en Viaje regionales e internacionales.',
+      'Y más.',
+    ],
+    href: 'https://tuplangaleno.com.ar/400-440/',
+  },
+  {
+    name: 'Oro',
+    price: '550',
+    subtitle: 'Un plan médico superior',
+    accent: 'oro',
+    benefits: [
+      'Consultas Médicas en domicilio sin cargo.',
+      'Psicología 36 sesiones por año.',
+      'Cirugía Estética Cobertura 100%, una c/ 2 años.',
+      'Implantes reintegro en implantes odont.',
+      'Internación acompañante adulto sin cargo.',
+      'Asistencia en Viaje regionales e internacionales.',
+      'Y más.',
+    ],
+    href: 'https://tuplangaleno.com.ar/400-440/',
+  },
+];
+
+const sanatorios = [
+  { name: 'Sanatorio de la Trinidad', branch: 'Quilmes', img: '/images/sanatorios/trinidad-quilmes.png', map: 'https://goo.gl/maps/1Tx8pXTTRgW1WKjz5' },
+  { name: 'Sanatorio de la Trinidad', branch: 'Ramos Mejía', img: '/images/sanatorios/trinidad-ramos.png', map: 'https://goo.gl/maps/dg8mC9QaSmG3QGSAA' },
+  { name: 'Sanatorio de la Trinidad', branch: 'Mitre', img: '/images/sanatorios/trinidad-mitre.png', map: 'https://goo.gl/maps/dpnToQ2Bw6Ldb42o7' },
+  { name: 'Sanatorio de la Trinidad', branch: 'Palermo', img: '/images/sanatorios/trinidad-palermo.png', map: 'https://goo.gl/maps/QYugSnZykSHM8oNs6' },
+  { name: 'Sanatorio de la Trinidad', branch: 'San Isidro', img: '/images/sanatorios/trinidad-san-isidro.png', map: 'https://goo.gl/maps/WL41QBM9LTcaHKrs6' },
+  { name: 'Centro Médico Galeno', branch: 'Barrio Norte', img: '/images/sanatorios/galeno-barrio-norte.png', map: 'https://goo.gl/maps/Rkf8X8xLkSoDnRmG9' },
+  { name: 'Sanatorio Dupuytren', branch: 'Almagro', img: '/images/sanatorios/dupuytren-almagro.jpg', map: 'https://goo.gl/maps/cUWMAZEww13WYu7M7' },
+];
+
+const planAccent = {
+  azul: { badge: 'bg-plan-azul', text: 'text-plan-azul', btn: 'bg-plan-azul hover:bg-brand-dark', ring: 'border-t-plan-azul' },
+  plata: { badge: 'bg-plan-plata', text: 'text-plan-plata', btn: 'bg-plan-plata hover:bg-gray-dark', ring: 'border-t-plan-plata' },
+  oro: { badge: 'bg-plan-oro', text: 'text-plan-oro', btn: 'bg-plan-oro hover:bg-plan-oro-dark', ring: 'border-t-plan-oro' },
+};
+---
+
+<Layout>
+  <!-- TOP BAR -->
+  <div class="bg-brand text-white">
+    <div class="max-w-6xl mx-auto px-4 py-2 flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-1 text-sm">
+      <span class="flex items-center gap-2">
+        <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.62 10.79a15.5 15.5 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.57 1 1 0 0 1-.24 1.02l-2.2 2.2Z" />
+        </svg>
+        <span>Si ya sos socio Galeno llamá al 0810 222 7828 / 0810 999 7828</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- HEADER / NAV -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#" aria-label="Inicio">
+        <img src="/images/logo.svg" alt="Tu plan Galeno" class="h-12 w-auto" />
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-1 text-sm text-gray-nav font-medium">
+        <a href="#planes" class="px-4 py-2 hover:text-brand transition-colors">Planes</a>
+        <a href="#sanatorios" class="px-4 py-2 hover:text-brand transition-colors">Sanatorios</a>
+        <a href="#contacto" class="ml-2 px-5 py-2 bg-brand text-white rounded hover:bg-brand-dark transition-colors font-semibold">
+          Contacto
+        </a>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="menu-toggle"
+        class="md:hidden p-2 text-gray-nav"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+      <nav class="flex flex-col px-4 py-3 text-sm text-gray-nav space-y-1">
+        <a href="#planes" class="py-2 hover:text-brand transition-colors" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Planes</a>
+        <a href="#sanatorios" class="py-2 hover:text-brand transition-colors" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Sanatorios</a>
+        <a href="#contacto" class="py-2 text-brand font-semibold" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SLIDER -->
+    <section class="relative overflow-hidden" aria-label="Slider de imágenes">
+      <div id="slider" class="flex transition-transform duration-700 ease-in-out">
+        {slides.map((slide) => (
+          <div
+            class="min-w-full h-[460px] md:h-[600px] bg-cover bg-center relative flex items-center"
+            style={`background-image: url('${slide.img}')`}
+          >
+            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/35 to-black/10"></div>
+            <div class="relative max-w-6xl mx-auto px-6 md:px-10 w-full">
+              <div class="max-w-xl">
+                <h2 class="text-white font-bold text-3xl md:text-5xl leading-tight drop-shadow mb-8">
+                  {slide.title}
+                </h2>
+                <a
+                  href={slide.href}
+                  class="inline-block bg-brand hover:bg-brand-dark text-white font-semibold px-8 py-3 rounded-full transition-colors shadow-lg"
+                >
+                  {slide.cta}
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Prev / Next -->
+      <button id="prev-slide"
+        class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full transition-colors"
+        aria-label="Anterior">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button id="next-slide"
+        class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full transition-colors"
+        aria-label="Siguiente">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <!-- Dots -->
+      <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
+        <button class="slider-dot w-3 h-3 rounded-full bg-white/90 border-2 border-white" data-index="0" aria-label="Slide 1"></button>
+        <button class="slider-dot w-3 h-3 rounded-full bg-white/40 border-2 border-white" data-index="1" aria-label="Slide 2"></button>
+        <button class="slider-dot w-3 h-3 rounded-full bg-white/40 border-2 border-white" data-index="2" aria-label="Slide 3"></button>
+      </div>
+    </section>
+
+    <!-- PLANES -->
+    <section id="planes" class="py-20 px-4 bg-gray-50 scroll-mt-20">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="font-slab text-4xl font-medium text-brand mb-3 text-center">Planes</h2>
+        <p class="text-center text-base text-gray-body mb-14 max-w-2xl mx-auto">
+          Elegí el plan médico que mejor se adapta a vos y a tu familia.
+        </p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {plans.map((plan) => {
+            const a = planAccent[plan.accent];
+            return (
+              <div class:list={["bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col border-t-4 overflow-hidden", a.ring]}>
+                <div class="p-6 text-center border-b border-gray-100">
+                  <h3 class:list={["font-slab text-2xl font-medium mb-2", a.text]}>{plan.name}</h3>
+                  <div class:list={["inline-block text-white text-2xl font-bold px-4 py-1 rounded-full", a.badge]}>
+                    ${plan.price}
+                  </div>
+                  <p class="mt-3 text-sm font-semibold text-gray-dark">{plan.subtitle}</p>
+                </div>
+                <ul class="p-6 space-y-3 text-sm flex-1">
+                  {plan.benefits.map((b) => (
+                    <li class="flex items-start gap-2">
+                      <svg class:list={["w-4 h-4 mt-0.5 flex-shrink-0", a.text]} fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd" />
+                      </svg>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div class="p-6 pt-0">
+                  <a
+                    href={plan.href}
+                    target="_blank"
+                    rel="noopener"
+                    class:list={["block text-center text-white text-sm font-semibold px-5 py-3 rounded-full transition-colors", a.btn]}
+                  >
+                    Ver más información
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- SANATORIOS -->
+    <section id="sanatorios" class="py-20 px-4 bg-white scroll-mt-20">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="font-slab text-4xl font-medium text-brand mb-3 text-center">Sanatorios</h2>
+        <p class="text-center text-base text-gray-body mb-14 max-w-2xl mx-auto">
+          Atendete en los mejores sanatorios y clínicas de la red Galeno.
+        </p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sanatorios.map((s) => (
+            <div class="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+              <div class="h-48 overflow-hidden">
+                <img
+                  src={s.img}
+                  alt={`${s.name} ${s.branch}`}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-5 flex-1 flex flex-col">
+                <h3 class="font-semibold text-gray-dark text-lg leading-tight">{s.name}</h3>
+                <p class="text-brand font-medium mb-4">{s.branch}</p>
+                <a
+                  href={s.map}
+                  target="_blank"
+                  rel="noopener"
+                  class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-brand hover:text-brand-dark transition-colors"
+                >
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
+                  </svg>
+                  Ubicación
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="text-center mt-12">
+          <a
+            href="https://tuplangaleno.com.ar/wp-content/uploads/2023/05/Clinicas-y-Sanatorios-actualizado-2023.pdf"
+            target="_blank"
+            rel="noopener"
+            class="inline-block bg-brand hover:bg-brand-dark text-white font-semibold px-8 py-3 rounded-full transition-colors uppercase tracking-wide text-sm"
+          >
+            Conocé todos los sanatorios y clínicas
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="py-20 px-4 bg-gray-50 scroll-mt-20">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="font-slab text-4xl font-medium text-brand mb-3 text-center">Envianos tu consulta</h2>
+        <p class="text-center text-base text-gray-body mb-10">
+          Dejanos tus datos y te contactamos a la brevedad. También podés llamarnos al
+          <a href="tel:+5491136919613" class="text-brand font-semibold hover:underline">11 3691 9613</a>.
+        </p>
+
+        <form
+          id="contact-form"
+          action="/contact.php"
+          method="POST"
+          class="space-y-5"
+          novalidate
+        >
+          <div>
+            <label for="nombre" class="block text-sm font-semibold text-gray-dark mb-1">
+              Nombre <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              required
+              class="w-full border border-gray-300 rounded px-4 py-3 text-sm text-gray-dark focus:outline-none focus:border-brand transition-colors"
+            />
+          </div>
+
+          <div>
+            <label for="telefono" class="block text-sm font-semibold text-gray-dark mb-1">Teléfono</label>
+            <input
+              type="tel"
+              id="telefono"
+              name="telefono"
+              class="w-full border border-gray-300 rounded px-4 py-3 text-sm text-gray-dark focus:outline-none focus:border-brand transition-colors"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-semibold text-gray-dark mb-1">
+              Correo electrónico <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full border border-gray-300 rounded px-4 py-3 text-sm text-gray-dark focus:outline-none focus:border-brand transition-colors"
+            />
+          </div>
+
+          <div>
+            <label for="mensaje" class="block text-sm font-semibold text-gray-dark mb-1">Mensaje</label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              rows="5"
+              class="w-full border border-gray-300 rounded px-4 py-3 text-sm text-gray-dark focus:outline-none focus:border-brand transition-colors resize-y"
+            ></textarea>
+          </div>
+
+          <!-- Honeypot anti-spam -->
+          <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+
+          <!-- Cloudflare Turnstile -->
+          <div
+            class="cf-turnstile"
+            data-sitekey="YOUR_TURNSTILE_SITE_KEY"
+            data-theme="light"
+          ></div>
+
+          <div id="form-message" class="hidden rounded px-4 py-3 text-sm"></div>
+
+          <div>
+            <button
+              type="submit"
+              class="bg-brand hover:bg-brand-dark text-white text-xs font-semibold uppercase tracking-wider px-8 py-4 rounded transition-colors"
+            >
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-dark text-white/90 py-12 px-4">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+      <!-- Logo -->
+      <div class="flex flex-col items-start gap-4">
+        <img src="/images/logo-white.svg" alt="Tu plan Galeno" class="h-11 w-auto" onerror="this.onerror=null;this.src='/images/logo.svg';this.classList.add('bg-white','rounded','p-1')" />
+        <p class="text-sm text-white/70">La salud de estar juntos.</p>
+      </div>
+
+      <!-- Nav -->
+      <nav class="flex flex-col gap-2 text-sm">
+        <a href="#planes" class="hover:text-white transition-colors">Planes</a>
+        <a href="#sanatorios" class="hover:text-white transition-colors">Sanatorios</a>
+        <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
+      </nav>
+
+      <!-- Contact info -->
+      <div class="flex flex-col gap-2 text-sm">
+        <p class="font-semibold text-white">¿Ya sos socio de Galeno?</p>
+        <p>Llamá al 0810 222 7828 / 0810 999 7828</p>
+        <p class="font-semibold text-white mt-2">¿Querés afiliarte?</p>
+        <p><a href="tel:+5491136919613" class="hover:text-white transition-colors">11 3691 9613</a></p>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/20 text-xs text-white/60 text-center">
+      &copy; {new Date().getFullYear()} Tu plan Galeno. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a
+    href="https://wa.me/5491136919613"
+    target="_blank"
+    rel="noopener"
+    aria-label="Contactar por WhatsApp"
+    class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-whatsapp text-white shadow-lg hover:bg-[#1ebe5d] hover:scale-105 transition-all duration-200"
+  >
+    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.477-.907zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.017-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z" />
+    </svg>
+  </a>
+</Layout>
+
+<script>
+  // ── Slider ──────────────────────────────────────────────
+  const slider = document.getElementById('slider') as HTMLElement;
+  const dots = document.querySelectorAll<HTMLElement>('.slider-dot');
+  let current = 0;
+  const total = 3;
+
+  function goTo(index: number) {
+    current = (index + total) % total;
+    slider.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => {
+      d.style.backgroundColor = i === current ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.4)';
+    });
+  }
+
+  document.getElementById('prev-slide')?.addEventListener('click', () => goTo(current - 1));
+  document.getElementById('next-slide')?.addEventListener('click', () => goTo(current + 1));
+  dots.forEach((dot) => dot.addEventListener('click', () => goTo(Number(dot.dataset.index))));
+
+  // Auto-advance
+  setInterval(() => goTo(current + 1), 5000);
+
+  // ── Mobile menu ──────────────────────────────────────────
+  const toggle = document.getElementById('menu-toggle') as HTMLButtonElement;
+  const mobileMenu = document.getElementById('mobile-menu') as HTMLElement;
+  toggle?.addEventListener('click', () => {
+    const open = !mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden', open);
+    toggle.setAttribute('aria-expanded', String(!open));
+  });
+
+  // ── Contact form (AJAX) ──────────────────────────────────
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const msg = document.getElementById('form-message') as HTMLElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type=submit]') as HTMLButtonElement;
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    msg.classList.add('hidden');
+
+    try {
+      const res = await fetch('/contact.php', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        msg.textContent = '¡Gracias! Tu consulta fue enviada. Te contactaremos a la brevedad.';
+        msg.className = 'rounded px-4 py-3 text-sm bg-green-50 text-green-700 border border-green-200';
+        form.reset();
+        if ((window as any).turnstile) (window as any).turnstile.reset();
+      } else {
+        throw new Error(data.message || 'Error al enviar');
+      }
+    } catch (err: any) {
+      msg.textContent = err.message || 'Hubo un error al enviar. Por favor intentá de nuevo.';
+      msg.className = 'rounded px-4 py-3 text-sm bg-red-50 text-red-700 border border-red-200';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Enviar';
+    }
+  });
+</script>

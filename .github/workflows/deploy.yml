@@ -1,0 +1,56 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Cache images
+        uses: actions/cache@v4
+        with:
+          path: public/images
+          key: wp-images-v1
+
+      - name: Download images (if not cached)
+        run: |
+          if [ ! -f "public/images/logo.svg" ]; then
+            echo "Images not cached, downloading..."
+            bash download-assets.sh
+          else
+            echo "Images already cached, skipping download."
+          fi
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build
+        run: bun run build
+
+      - name: Copy contact.php to dist
+        run: cp public/contact.php dist/contact.php
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy via rsync
+        run: |
+          rsync -azv --delete \
+            dist/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/tuplangaleno/htdocs/tuplangaleno.com.ar/dist/

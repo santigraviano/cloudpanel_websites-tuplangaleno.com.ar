@@ -1,0 +1,32 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Tu plan Galeno – La salud de estar juntos',
+  description = 'Planes médicos Galeno con amplia cobertura: emergencias 24hs, consultas ilimitadas, odontología, asistencia en viaje y los mejores sanatorios. Cotizá tu plan sin cargo.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Slab:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  </head>
+  <body class="font-sans text-gray-body bg-white antialiased">
+    <slot />
+  </body>
+</html>
